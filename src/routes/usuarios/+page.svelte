@@ -1,6 +1,4 @@
 <script>
-    import Button from '../Button.svelte'
 </script>
-
-<h1>usuarios</h1>
-<Button />
+<img src="C:\Users\ritze\OneDrive\Documentos\GitHub\frontYonder\static\logoYonder.png" alt="">
+<p>usuarios</p>
