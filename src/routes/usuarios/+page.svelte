@@ -1,4 +1,8 @@
 <script>
+
+    console.log("teste")
+    
 </script>
-<img src="C:\Users\ritze\OneDrive\Documentos\GitHub\frontYonder\static\logoYonder.png" alt="">
-<p>usuarios</p>
+
+<p class="text-center text-4xl py-9 underline decoration-sky-500">Gerenciar Usuarios</p>
+
