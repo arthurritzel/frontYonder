@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
     import ButtonDelet from "./ButtonDelet.svelte";
     export var url = ""
     export var dadosJS = []
@@ -25,4 +25,4 @@
             {/each}
         {/if}
     </div>
-</div>
+</div> -->
