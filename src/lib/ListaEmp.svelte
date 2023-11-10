@@ -1,0 +1,118 @@
+<script>
+    export var url = ""
+    export var dadosJS = []
+    async function get(){
+            var dados = await fetch("http://localhost:8080/"+url, {
+                method: "GET",
+                headers: {
+                'Content-Type': 'application/json'
+            }
+            })
+            dadosJS = await dados.json();
+            console.log(dadosJS, "teste")
+        }
+        get()
+    
+   
+    async function delet(id, url){
+        var dados = await fetch("http://localhost:8080/"+url+"/excluir/"+id, {
+            method: "DELETE"
+        })
+        get()
+    }
+
+	import Input from '$lib/Input.svelte';
+	import Button from '$lib/Button.svelte';
+	
+	export let data = {};
+	export let onSubmit = () => {};
+
+	let name = data.name ?? '';
+	let length = data.length;
+	let errors = {};
+	let touchedFields = {};
+	  
+	$: result = {
+		name, length
+	};
+	
+	$: errors = validate(touchedFields, result);
+
+	const validate = () => {
+		const errors = {};
+		if (touchedFields.name && name === '') {
+			errors.name = 'Name is required';
+		}
+		if (touchedFields.length && length.length < 11) {
+			errors.length = 'Digite um cnpj valido';
+		}
+		return errors;
+	};
+	
+	const validateAndSubmit = () => {
+		touchedFields = { name: true, length: true};
+		if (!Object.keys(errors).length) {
+			async function post(){
+				var dados = await fetch("http://localhost:8080/"+url+"/adicionar", {
+				method: "POST",
+				body: JSON.stringify({
+					nome: result.name,
+					cnpj: result.length,
+				}),
+				headers: {
+				'Content-Type': 'application/json'
+				}
+				
+				})
+				
+                get()
+			}
+			post()
+		}
+	};
+</script>
+
+
+    <div class="bg-[#D4CDC5] p-10 rounded-2xl w-1/3">
+            {#each dadosJS as dado}
+                <p class="border-4 border-[#D4CDC5] border-b-black text-2xl p-1 flex justify-between">{dado.nome} <button class="bg-red-600 p-2 rounded-xl" on:click={delet(dado.id, url)}>Deletar</button></p>
+            {/each}
+    </div>
+
+    <div class="form">
+        <fieldset class="fieldset"> 
+            <legend>Cadastrar</legend>
+            <Input
+                type="text"
+                label="Nome"
+                bind:value={name}
+                on:blur={() => touchedFields.name = true}
+                error={errors.name}
+            />
+            <Input
+                type="text"
+                label="CNPJ"
+                bind:value={length}
+                on:blur={() => touchedFields.length = true}
+                error={errors.length}
+            />
+            <Button on:click={validateAndSubmit}>Submit</Button>
+             
+        </fieldset>
+    </div>
+
+<style>
+    .fieldset > * {
+        display: block;
+    }
+    
+    .fieldset > :global(:not(legend) + *) {
+        margin-top: 16px;
+    }
+    
+    .fieldset {
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 20px;
+    }
+</style>
