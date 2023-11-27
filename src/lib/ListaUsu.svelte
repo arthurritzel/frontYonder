@@ -114,9 +114,9 @@
                 on:blur={() => touchedFields.length = true}
                 error={errors.length}
             />
-            {#if url == "usuarios"}
+            
             <Select
-                label="Empresa"
+                label="empresa"
                 bind:value={type}
                 on:blur={() => touchedFields.type = true}
                 error={errors.type}
@@ -125,13 +125,17 @@
                     <option value="{dado.id}">{dado.nome}</option>
                 {/each}
             </Select>
-            {/if}
+            
             <Button on:click={validateAndSubmit}>Submit</Button>
              
         </fieldset>
     </div>
 
 <style>
+   .formu{
+        width: 35%;
+        
+    }
     .fieldset > * {
         display: block;
     }
@@ -144,5 +148,9 @@
         border: 1px solid #ddd;
         border-radius: 4px;
         padding: 20px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 </style>

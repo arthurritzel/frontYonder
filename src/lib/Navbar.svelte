@@ -26,3 +26,9 @@
                 
     </div>
 </nav>
+
+<style>
+    a{
+        font-size: 25px;
+    }
+</style>

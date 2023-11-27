@@ -36,9 +36,12 @@
   
   <style>
       .input {
-          border-radius: 4px;
-          padding: 6px 10px;
+          border-radius: 15px;
+          padding: 6px 6px;
           margin: 0;
+          background-color: #D9D9D9;
+          width: 100%;
+      
       }
       
       .block {

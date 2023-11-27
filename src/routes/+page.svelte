@@ -1,11 +1,31 @@
+<script>
+    import Logo from "$lib/Logo.svelte"
+</script>
 
+<div>
+    <h1>Projeto Yonder</h1>
+    <p>Manipulação de API</p>
+    <img src="logoYonder.png" alt="logo yonder" class="logo">
+</div>
 
-<h1>Projeto Yonder</h1>
-<ul>
-    <li><a class="text-green-500" href="/usuarios">Usuarios</a></li>
-    <li><a href="/empresas">Empresas</a></li>
-    <li><a href="/agendamentos">Agendamentos</a></li>
-    <li><a href="/perguntas">Perguntas</a></li>
-    <li><a href="/respostas">Respostas</a></li>
+<style>
+    div{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
 
-</ul>
+    h1{
+        font-size: 50px;
+        margin-top: 50px;
+    }
+
+    p{
+        font-size: 30px;
+    }
+    img{
+        margin-top: 50px;
+        width: 30%;
+    }
+</style>

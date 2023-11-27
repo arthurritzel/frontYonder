@@ -22,6 +22,7 @@
     }
 
 	import Input from '$lib/Input.svelte';
+	import Select from '$lib/Select.svelte';
 	import Button from '$lib/Button.svelte';
 	
 	export let data = {};
@@ -29,11 +30,27 @@
 
 	let name = data.name ?? '';
 	let length = data.length;
+	let type = data.type ?? 'original';
 	let errors = {};
 	let touchedFields = {};
-	  
+
+	var dadosJSemp = []
+	
+    dadosJSemp = [{
+        id: 'writing',
+        nome: 'writing'
+    },
+    {
+        id: 'reading',
+        nome: 'reading'
+    },{
+        id: 'speaking',
+        nome: 'speaking'
+    }]
+    
+
 	$: result = {
-		name, length
+		name, length, type
 	};
 	
 	$: errors = validate(touchedFields, result);
@@ -43,21 +60,21 @@
 		if (touchedFields.name && name === '') {
 			errors.name = 'Name is required';
 		}
-		if (touchedFields.length && length.length < 11) {
-			errors.length = 'Digite um cnpj valido';
-		}
 		return errors;
 	};
 	
 	const validateAndSubmit = () => {
-		touchedFields = { name: true, length: true};
+		touchedFields = { name: true, length: true, type: true };
 		if (!Object.keys(errors).length) {
 			async function post(){
 				var dados = await fetch("http://localhost:8080/"+url+"/adicionar", {
 				method: "POST",
+                
 				body: JSON.stringify({
-					nome: result.name,
-					cnpj: result.length,
+                    cabecalho: result.name,
+                    tipo_prova: result.type,
+                    nivel: result.length
+					
 				}),
 				headers: {
 				'Content-Type': 'application/json'
@@ -75,27 +92,38 @@
 
     <div class="bg-[#D4CDC5] p-10 rounded-2xl w-1/3">
             {#each dadosJS as dado}
-                <p class="border-4 border-[#D4CDC5] border-b-black text-2xl p-1 flex justify-between">{dado.nome} <button class="bg-red-600 p-2 rounded-xl" on:click={delet(dado.id, url)}>Deletar</button></p>
+                <p class="border-4 border-[#D4CDC5] border-b-black text-2xl p-1 flex justify-between">{dado.cabecalho} <button class="bg-red-600 p-2 rounded-xl" on:click={delet(dado.id, url)}>Deletar</button></p>
             {/each}
     </div>
 
-    <div class="formu">
-        <fieldset class="fieldset"> 
+    <div class="form">
+        <fieldset class="fieldset">
             <legend>Cadastrar</legend>
             <Input
                 type="text"
-                label="Nome"
+                label="Cabecalho"
                 bind:value={name}
                 on:blur={() => touchedFields.name = true}
                 error={errors.name}
             />
             <Input
-                type="text"
-                label="CNPJ"
+                type="number"
+                label="nivel"
                 bind:value={length}
                 on:blur={() => touchedFields.length = true}
                 error={errors.length}
             />
+            <Select
+                label="tipo_prova"
+                bind:value={type}
+                on:blur={() => touchedFields.type = true}
+                error={errors.type}
+            >
+                {#each dadosJSemp as dado}	
+                    <option value="{dado.id}">{dado.nome}</option>
+                {/each}
+            </Select>
+            
             <Button on:click={validateAndSubmit}>Submit</Button>
              
         </fieldset>

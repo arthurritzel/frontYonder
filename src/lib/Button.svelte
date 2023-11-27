@@ -4,17 +4,18 @@
 
 <style>	
 	.button {
-		border-radius: 4px;
+		border-radius: 20px;
 		border-color: #a0c0f0;
-		background-color: #acf;
-		color: #124;
+		background-color: #243A69;
+		color: white;
 		transition: .2s ease all;
-		padding: 6px 10px;
+		padding: 4px 20px;
+		font-size: 30px;
 	}
 
 	.button:hover {
 		border-color: #b0d0f0;
 		background-color: #bdf;
-		color: #248;
+		color: #243A69;
 	}
 </style>
