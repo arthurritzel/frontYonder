@@ -132,8 +132,8 @@
     </div>
 
 <style>
-   .formu{
-        width: 35%;
+   .form{
+        width: 20%;
         
     }
     .fieldset > * {

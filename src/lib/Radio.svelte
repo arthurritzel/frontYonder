@@ -16,13 +16,14 @@
   </script>
   
   <div role="radiogroup" 
-                   class="group-container"
-                   aria-labelledby={`label-${uniqueID}`}
-                   style="font-size:{fontSize}px; flex-direction:{flexDirection}" 
-                   id={`group-${uniqueID}`}>
-          <div class="legend" 
-                           id={`label-${uniqueID}`}>{legend}
-                  </div>
+            class="group-container"
+            aria-labelledby={`label-${uniqueID}`}
+            style="font-size:{fontSize}px; flex-direction:{flexDirection}" 
+            id={`group-${uniqueID}`}>
+    <div class="legend" 
+        id={`label-${uniqueID}`}>{legend}
+    </div>
+    <div class="options">
     {#each options as { value, label }}
       <input
         class="sr-only"
@@ -32,9 +33,15 @@
         value={value} />
       <label for={slugify(label)}> {label} </label>
     {/each}
+    </div>
   </div>
   
   <style>
+    .options{
+      display: flex;
+      flex-direction: row;
+      
+    }
               :root {
           --accent-color: CornflowerBlue;
           --gray: #ccc;
@@ -62,6 +69,7 @@
       height: 1px;
       width: 1px;
       overflow: hidden;
+      margin-left: 5px;
     }
   
     input[type="radio"] {

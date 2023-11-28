@@ -103,7 +103,7 @@
 
     <div class="bg-[#D4CDC5] p-10 rounded-2xl w-1/3">
             {#each dadosJS as dado}
-                <p class="border-4 border-[#D4CDC5] border-b-black text-2xl p-1 flex justify-between">{dado.dia} <button class="bg-red-600 p-2 rounded-xl" on:click={delet(dado.id, url)}>Deletar</button></p>
+                <p class="border-4 border-[#D4CDC5] border-b-black text-2xl p-1 flex justify-between">{dado.dia} | Usuario: {dado.usuario.nome} <button class="bg-red-600 p-2 rounded-xl" on:click={delet(dado.id, url)}>Deletar</button></p>
             {/each}
     </div>
 
@@ -146,8 +146,8 @@
     </div>
 
 <style>
-    .formu{
-        width: 35%;
+    .form{
+        width: 20%;
         
     }
     .fieldset > * {

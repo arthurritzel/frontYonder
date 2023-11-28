@@ -23,10 +23,12 @@
           border: 1px solid #ddd;
           border-radius: 4px;
           padding: 6px 10px 6px 4px;
+          width: 90%;
       }
   
       .block {
       display: block;
+      width: 100%;
     }
   
       .error {

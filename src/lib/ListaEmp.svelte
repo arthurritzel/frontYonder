@@ -103,7 +103,7 @@
 
 <style>
     .formu{
-        width: 35%;
+        width: 20%;
         
     }
     .fieldset > * {
