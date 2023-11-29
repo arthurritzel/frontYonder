@@ -87,12 +87,30 @@
 			post()
 		}
 	};
+
+    var modal_verify = false
+    var cabecalho, tipo_prova, nivel
+    function modal(id){
+        modal_verify = true
+        dadosJS.forEach(element => {
+            if(element.id == id){
+                cabecalho = element.cabecalho
+                tipo_prova = element.tipo_prova
+                nivel = element.nivel
+            }
+        });
+    }
 </script>
 
 
-    <div class="bg-[#D4CDC5] p-10 rounded-2xl w-1/3">
+    <div class="bg-[#D4CDC5] p-10 rounded-2xl w-1/2">
             {#each dadosJS as dado}
-                <p class="border-4 border-[#D4CDC5] border-b-black text-2xl p-1 flex justify-between">{dado.cabecalho} <button class="bg-red-600 p-2 rounded-xl" on:click={delet(dado.id, url)}>Deletar</button></p>
+            <div class="itens border-4 border-[#D4CDC5] border-b-black">
+                <p class="text-2xl p-1 flex justify-between">{dado.cabecalho}</p> 
+                <button class="bg-red-600 p-2 rounded-xl" on:click={delet(dado.id, url)}>Deletar</button>
+                <button class="bg-blue-600 p-2 rounded-xl" on:click={modal(dado.id)}>Visualizar</button>
+
+            </div>
             {/each}
     </div>
 
@@ -129,7 +147,53 @@
         </fieldset>
     </div>
 
+    {#if modal_verify}
+        <div class="modal bg-white shadow dark:bg-gray-800">
+            <p>Cabeçalho: {cabecalho}</p>
+            <p>Tipo Prova: {tipo_prova}</p>
+            <p>Nivel: {nivel}</p>
+            <br>
+            <div>
+                <button class="bg-red-600 p-2 rounded-xl" on:click={()=>{modal_verify = false}}>fechar</button>
+            </div>
+        </div>
+        
+    {/if}
+
 <style>
+    .itens{
+        display: flex;
+        margin-top: 15px;
+    }
+    .itens p {
+        width: 80%;
+    }
+    .itens button{
+        margin-left: 10px;
+    }
+    .modal{
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        
+        margin-left: 200px;
+
+        border-radius: 20px;
+        padding: 10px;
+        box-shadow: 0px 0px 10px 0px;
+    }
+    .modal p{
+        font-size: 30px;
+        margin: 10px;
+        color: white;
+    }
+    .modal div{
+        width: 90%;
+        display: flex;
+        justify-content: right;
+    }
     .form{
         width: 20%;
         

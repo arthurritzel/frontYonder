@@ -22,7 +22,7 @@
     h1{
         font-size: 50px;
         margin-top: 50px;
-        background-color: rgba(7, 7, 66, 0.68);
+        background-color: rgba(0, 9, 68, 0.68);
         color: rgb(255, 255, 255);
         padding: 10px;
         border-radius: 20px;
